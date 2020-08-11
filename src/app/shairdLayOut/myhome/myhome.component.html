@@ -1,0 +1,36 @@
+<section id="hero">
+  <div class="hero-container dark-overlay">
+    <h3>Welcome In <strong>My Shop</strong></h3>
+    <h1>We're Creative Agency</h1>
+    <h2>All You Need You Will Get In Our Web Site</h2>
+    <a  class="btn-get-started">Get Started</a>
+  </div>
+</section>
+<div class="container" id="about">
+  <ul class="list-group list-group-horizontal-xl sizec my-5 list-group-flush">
+    <li class="list-group-item  px-3 btn btn-outline-primary" routerLink="/myhome" >All Products</li>
+    <li class="list-group-item  px-3 btn btn-outline-info"  routerLink="/myhome" [queryParams]="{categoryy:catlap}">Laptops</li>
+    <li class="list-group-item  px-3 btn-outline-secondary" routerLink="/myhome" [queryParams]="{categoryy:catmobile}">Mobiles</li>
+    <li class="list-group-item  px-3 btn-outline-danger" routerLink="/myhome" [queryParams]="{categoryy:cattap}">Tablts</li>
+    <li class="list-group-item  px-3 btn-outline-success" routerLink="/myhome" [queryParams]="{categoryy:catscreen}">Screens</li>
+  </ul>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 my-3 " *ngFor="let item of filterproduct">
+
+      <div class="card border-info" style="min-height: 450px;max-height: 450px;">
+        <img class="card-img-top" style="min-height:300px;max-height:300px;overflow:auto;" [src]="item.imgurl">
+        <div class="card-body colrre" style="max-height: 200px;">
+          <h2 class="card-title">{{item.name}}</h2>
+          <h2 class="card-title">{{item.price | currency:'USD':true}}</h2>
+        </div>
+
+        <div>
+          <button routerLink="/showdedails/{{item.name}}" class="btn btn-info btn-block">Show Details<i class="fad fa-chevron-double-right"> >> </i></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container" style="min-height: 545px; width: 100%;">
+    <div style="margin-top: 60px;">
+    <h1>SHOPING CART PAGE!</h1>
+    <h2>You Have {{quantatyfromservice}} Items In Your Shoing Cart </h2>
+    <button (click)="clearcard()" class="btn btn-light btn-sm">cleare my card</button>
+
+  <br><br>
+    <table class="table" *ngIf="quantatyfromservice > 0" >
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantaty</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead >
+        <tbody *ngFor="let item of shopinglist" >
+          
+            <tr *ngIf="item.productquantay > 0" >
+                <td><img class="imgg" src="{{item.imgurl}}"></td>
+                <th scope="row">{{item.name}}</th>
+                 <td> 
+                    <div class="row">
+                        <div class="col-2 ">
+                            <button class="btn btn-secondary btn-block" (click)="minusclick(item)">-</button>
+                        </div>
+    
+                        <div class="col-4 ">
+                            Quantaty is : {{item.productquantay}}
+                        </div>
+                        <div class="col-2 ">
+                            <button class="btn btn-secondary btn-block" (click)="plusclick(item)">+</button>
+                        </div>
+                    </div>
+               </td>
+                <td >{{item.price}}</td>
+          </tr>
+          
+        </tbody>
+        <thead>
+          <tr>
+            <th ></th>
+            <th ></th>
+            <th ></th>
+            <th >total :$ {{total}}</th>
+          </tr>
+        </thead>
+         <br>
+        <button routerLink="/checkOut"  class="btn btn-info">CheckOut</button>
+        <br>
+      </table>
+</div>
+</div>

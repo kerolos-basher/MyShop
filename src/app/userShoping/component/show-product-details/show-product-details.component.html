@@ -1,0 +1,40 @@
+<div class="container fromtop" style="min-height: 545px; width: 100%;">
+    <div class="row">
+        <div class="col-sm-6">
+            <br><br><br>
+            <h1> Name : {{selectedpro.name}}</h1>
+            <h2>Price : {{selectedpro.price}}</h2>
+            <h2>Category : {{selectedpro.category}}</h2>
+            <h4>About : {{selectedpro.about}}</h4>
+        </div>
+
+        <div class="col-sm-5 my-3 ">
+            <div class="card border-secondary" style="min-height: 450px;max-height: 450px;">
+                <img class="card-img-top" style="min-height:300px;max-height:300px;overflow:auto;" [src]="selectedpro.imgurl">                
+            </div>
+            <button  class="btn btn-secondary btn-block"
+            (click)="mainbutoonclick()" *ngIf="quantaty==0 ;else ngtemp">Add To Card</button>
+
+            <ng-template #ngtemp>
+                <div class="row">
+                    <div class="col-2 ">
+                        <button class="btn btn-secondary btn-block" (click)="minusclick()">-</button>
+                    </div>
+
+                    <div class="col ">
+                        Quantaty is : {{quantaty}}
+                    </div>
+                    <div class="col-2 ">
+                        <button class="btn btn-secondary btn-block" (click)="plusclick()">+</button>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>

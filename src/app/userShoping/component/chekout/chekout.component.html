@@ -1,0 +1,66 @@
+<div class="container" style="min-height: 545px; width: 100%;">
+    <div class="row">
+        <div class="col-6">
+            <br>
+            <br>
+            <br>
+            <form #f="ngForm" >
+                <div>
+                    <div class="form-group">
+                        <label for="uName">Name</label>
+                        <input ngModel #uName="ngModel" type="text"  class="form-control" name="uName"
+                            placeholder="Your Name" required >
+                        <div [hidden]="uName.valid || uName.untouched" class="alert alert-danger"> Name  Is Required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="moblenumber">Mobile Number</label>
+                        <input ngModel #moblenumber="ngModel" type="number"  pattern=".{10,11}" class="form-control" name="moblenumber"
+                            placeholder="Enter Your Mobile Number" required>
+                        <div [hidden]="moblenumber.valid || address.untouched" class="alert alert-danger">Mobile Number Is Required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input ngModel #address="ngModel" type="text"   class="form-control" name="address"
+                            placeholder="Enter Your Address" required>
+                        <div [hidden]="address.valid || address.untouched" class="alert alert-danger"> Address Is Required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="City">City</label>
+                        <input ngModel #City="ngModel" type="text"  class="form-control" name="city"
+                            placeholder="Enter City" required>
+                        <div [hidden]="City.valid || City.untouched" class="alert alert-danger"> City Is Requird </div>
+                    </div>
+                    <button (click)="saveorder(uName.value,moblenumber.value,address.value,City.value)" routerLink="/ordersuccess" class="btn btn-info" [disabled]="!f.valid">Save Order</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <br>
+            <br>
+            <br>
+            <div class="card border-primary my-3" style="width: 18rem;" style="width: 500px;">
+            <div class="card-body">
+              <h2>Order Samary</h2>
+              <h3>You have -{{quantatyfromservice}}-  Items In Your Shoping Card</h3>
+              <ul class="list-group list-group-flush "><!--list-group-flush-->
+               
+                  <li class="list-group-item border-success" *ngFor="let item of productcomfromdb" >
+                      {{getprice(item)}}
+                    <div *ngIf="item.productquantay>0"> <h2> {{item.productquantay}} × {{item.name}}
+                      <div class="float-right">${{priceforonepro}}</div></h2></div>
+                     
+                  </li >
+                 
+                  <li class="list-group-item">
+                    <hr class="bg-danger">
+                    <h2>Total Price Is:<div class="float-right"> ${{totalprice}}</div></h2>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

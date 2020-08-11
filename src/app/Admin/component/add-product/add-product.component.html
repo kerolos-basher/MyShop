@@ -1,0 +1,96 @@
+<div class="container fromtop" style="min-height: 545px; width: 100%;">
+    <div class="row">
+        <div class="col-sm-6">
+            <br><br>
+            <form #f="ngForm" >
+                <div>
+                    <div class="form-group">
+                        <label for="proid">product Id</label>
+                        <input ngModel #proid="ngModel" type="number" class="form-control" name="proid"
+                            placeholder="Enter Product ID" required>
+                        <div [hidden]="proid.valid || proid.untouched" class="alert alert-danger"> ID Is Required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">product Name</label>
+                        <input ngModel #proname="ngModel" type="text" class="form-control" name="proname"
+                            placeholder="Enter Product Name" required>
+                        <div [hidden]="proname.valid || proname.untouched" class="alert alert-danger"> Name Is Required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">product Price</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input ngModel #proprice="ngModel" name="proprice" type="number" required
+                                class="form-control">
+                        </div>
+                        <div [hidden]="proprice.valid || proprice.untouched" class="alert alert-danger">
+                            Price Is Required
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="cat">product Category</label>
+                        <br>
+                        <select ngModel name="categorys" class="form-control" [(ngModel)]="seledcatname">
+                            <option *ngFor="let item of catlist" [value]="item.category">
+                                {{item.category}}
+
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="proimg">product Img Url</label>
+                        <input ngModel #proimg="ngModel" type="text" class="form-control" name="proimg"
+                            placeholder="Enter Product Img Url" required>
+                        <div [hidden]="proimg.valid || proimg.untouched" class="alert alert-danger"> Product Url Img Is
+                            Required</div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="proimg">product info</label>
+                        <textarea ngModel  #about="ngModel" type="text" class="form-control" name="about"
+                            placeholder="Enter Product Img Url" required></textarea>
+                        <div [hidden]="about.valid || about.untouched" class="alert alert-danger"> Product Url Img Is
+                            Required</div>
+                    </div>
+
+
+                    <button class="btn btn-info mb-3"  routerLink="/manageproduct"
+                     (click)="save(proid.value ,proname.value,proprice.value,seledcatname,proimg.value,about.value)" [disabled]="!f.valid || seledcatname==null">Save</button>
+
+
+                </div>
+             
+            </form>
+        </div>
+        <div class="col-sm-5 offset-1" >
+            <br><br><br>
+            <div *ngIf="proname.value" class="card border-info" style="width: 18rem;">
+                <img class="card-img-top " [src]="proimg.value" >
+                <hr class="bg-info">
+                <div class="card-body">
+                    <h2 class="card-title">{{proname.value}}</h2>
+                    <hr class="bg-danger">
+                    <h4 class="card-title">{{proprice.value | currency:'USD':true}}</h4>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

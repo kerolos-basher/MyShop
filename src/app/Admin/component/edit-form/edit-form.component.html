@@ -1,0 +1,82 @@
+<div class="container fromtop" style="min-height: 545px; width: 100%;" >
+    <div class="row">
+        <div class="col-sm-6">
+            <br><br><br>
+            <form #f="ngForm">
+                <div>
+                    <div class="form-group">
+                        <label for="proname">product Name</label>
+                        <input [(ngModel)]="selectedpro.name" #proname="ngModel" type="text" class="form-control" name="proname" 
+                            placeholder="Enter Product Name" required>
+                        <div [hidden]="proname.valid || proname.untouched" class="alert alert-danger"> Name Is Required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">product Price</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input [(ngModel)]="selectedpro.price" #proprice="ngModel" name="proprice" type="number" required
+                                class="form-control">
+                        </div>
+                        <div [hidden]="proprice.valid || proprice.untouched" class="alert alert-danger">
+                            Price Is Required
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="cat">product Category</label>
+                        <br>
+                        <select  name="categorys" class="form-control" [(ngModel)]="selectedpro.category">
+                            <option *ngFor="let item of catlist" [value]="item.category">
+                                {{item.category}}
+
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="proimg">product Img Url</label>
+                        <input [(ngModel)]="selectedpro.imgurl" #proimg="ngModel" type="text" class="form-control" name="proimg"
+                            placeholder="Enter Product Img Url" required>
+                        <div [hidden]="proimg.valid || proimg.untouched" class="alert alert-danger"> Product Url Img Is
+                            Required</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proimg">product info</label>
+                        <textarea [(ngModel)]="selectedpro.about" #about="ngModel" type="text" class="form-control" name="about"
+                            placeholder="Enter Product Img Url" required></textarea>
+                        <div [hidden]="about.valid || about.untouched" class="alert alert-danger"> Product Url Img Is
+                            Required</div>
+                    </div>
+
+                    <button class="btn btn-info" routerLink="/manageproduct" (click)="update()" [disabled]="!f.valid">Update</button>
+                    <span style="width: 10px;">            .        </span>
+                   <button class="btn btn-danger" routerLink="/manageproduct" (click)="deletpro()" >Delete</button>
+                </div>
+            </form>
+        </div>
+       <div class="col-sm-5 offset-1" style="margin-left: 10px;">
+            <br><br><br>
+            <div class="card border-info rounded-1 " style="width: 18rem;">
+                <img class="card-img-top"  [src]="proimg.value" >
+                <hr class="bg-info">
+                <div class="card-body">
+                    <h3 class="card-title">Name : {{proname.value}}</h3>
+                    <hr class="bg-danger">
+                    <h3 class="card-title">Price : {{proprice.value | currency:'USD':true}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
